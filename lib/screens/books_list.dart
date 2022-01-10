@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:reador/provider/book_provider.dart';
+import 'package:reador/provider/theme_provider.dart';
 import 'package:reador/screens/add_book.dart';
 import 'package:reador/screens/edit_book.dart';
 
@@ -26,6 +27,21 @@ class BooksListView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Organize your Readings'),
+        actions: [
+          (context.read<ThemeProvider>().isDarkTheme)
+              ? IconButton(
+                  onPressed: () {
+                    context.read<ThemeProvider>().toggleTheme(
+                        !context.read<ThemeProvider>().isDarkTheme);
+                  },
+                  icon: const Icon(Icons.light_mode))
+              : IconButton(
+                  onPressed: () {
+                    context.read<ThemeProvider>().toggleTheme(
+                        !context.read<ThemeProvider>().isDarkTheme);
+                  },
+                  icon: const Icon(Icons.dark_mode)),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
