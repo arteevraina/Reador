@@ -28,19 +28,20 @@ class BooksListView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Organize your Readings'),
         actions: [
-          (context.read<ThemeProvider>().isDarkTheme)
-              ? IconButton(
-                  onPressed: () {
-                    context.read<ThemeProvider>().toggleTheme(
-                        !context.read<ThemeProvider>().isDarkTheme);
-                  },
-                  icon: const Icon(Icons.light_mode))
-              : IconButton(
-                  onPressed: () {
-                    context.read<ThemeProvider>().toggleTheme(
-                        !context.read<ThemeProvider>().isDarkTheme);
-                  },
-                  icon: const Icon(Icons.dark_mode)),
+          Consumer<ThemeProvider>(
+            builder: (context, provider, child) {
+              return IconButton(
+                onPressed: () {
+                  context
+                      .read<ThemeProvider>()
+                      .toggleTheme(!context.read<ThemeProvider>().isDarkTheme);
+                },
+                icon: (context.read<ThemeProvider>().isDarkTheme)
+                    ? const Icon(Icons.light_mode)
+                    : const Icon(Icons.dark_mode),
+              );
+            },
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(

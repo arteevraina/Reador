@@ -6,9 +6,7 @@ class ThemeProvider extends ChangeNotifier {
   bool get isDarkTheme => _isDarkTheme;
 
   void toggleTheme(bool value) {
-    debugPrint("Called");
     _isDarkTheme = value;
-    debugPrint(value.toString());
     notifyListeners();
   }
 }
