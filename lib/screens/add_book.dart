@@ -100,7 +100,6 @@ class _AddBookViewState extends State<AddBookView> {
                 ],
               ),
               const SizedBox(height: 12.0),
-              // TODO: Add Dark and Light Theme.
               ElevatedButton.icon(
                 onPressed: () {
                   // If the validation works fine then proceed.

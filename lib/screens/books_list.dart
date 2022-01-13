@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:reador/provider/book_provider.dart';
 import 'package:reador/provider/theme_provider.dart';
@@ -65,27 +64,25 @@ class BooksListView extends StatelessWidget {
                   }
                   return ListView.builder(
                     itemBuilder: (context, index) {
+                      int percent = ((provider.items[index].pagesRead /
+                                  provider.items[index].totalPages) *
+                              100)
+                          .toInt();
                       return Card(
                         key: ValueKey(provider.items[index].id),
                         child: ListTile(
+                          isThreeLine: true,
                           onTap: () {
                             Navigator.push(
-                                context,
-                                EditBook.route(
-                                    bookProvider: context.read<BookProvider>(),
-                                    index: index));
+                              context,
+                              EditBook.route(
+                                bookProvider: context.read<BookProvider>(),
+                                index: index,
+                              ),
+                            );
                           },
                           title: Text(provider.items[index].name),
-                          subtitle: LinearPercentIndicator(
-                            width: MediaQuery.of(context).size.width * 0.6,
-                            lineHeight: 16.0,
-                            backgroundColor: Colors.grey,
-                            percent: (provider.items[index].pagesRead /
-                                provider.items[index].totalPages),
-                            progressColor: Colors.green,
-                            center: Text(
-                                "${((provider.items[index].pagesRead / provider.items[index].totalPages) * 100).toInt()}%"),
-                          ),
+                          subtitle: PercentIndicator(percent: percent),
                           trailing: IconButton(
                             onPressed: () {
                               context.read<BookProvider>().delete(index);
@@ -108,6 +105,51 @@ class BooksListView extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class PercentIndicator extends StatelessWidget {
+  const PercentIndicator({
+    Key? key,
+    required this.percent,
+  }) : super(key: key);
+
+  final int percent;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(top: 12.0),
+      child: Stack(
+        children: [
+          Container(
+            height: 16,
+            decoration: const BoxDecoration(
+              color: Colors.grey,
+              borderRadius: BorderRadius.all(
+                Radius.circular(20),
+              ),
+            ),
+          ),
+          Container(
+            height: 16,
+            width: MediaQuery.of(context).size.width * (percent / 100),
+            decoration: const BoxDecoration(
+              color: Colors.green,
+              borderRadius: BorderRadius.all(
+                Radius.circular(20),
+              ),
+            ),
+          ),
+          Center(
+            child: Text(
+              "$percent%",
+              style: const TextStyle(fontSize: 12.0, color: Colors.black),
+            ),
+          ),
+        ],
       ),
     );
   }
