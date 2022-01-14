@@ -8,7 +8,7 @@ class EditBook extends StatelessWidget {
   /// Provide the already created instance of [BookProvider]
   /// to [EditBook].
   static route(
-          {required bookProvider,
+          {required BookProvider bookProvider,
           required index,
           required isFavorite,
           required dateTime}) =>

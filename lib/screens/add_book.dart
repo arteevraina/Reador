@@ -7,7 +7,7 @@ class AddBook extends StatelessWidget {
   // Create a static method for route of Navigation.
   /// Provide the already created instance of [BookProvider]
   /// to [AddBook].
-  static route({required bookProvider}) => MaterialPageRoute(
+  static route({required BookProvider bookProvider}) => MaterialPageRoute(
         builder: (context) => AddBook(
           bookProvider: bookProvider,
         ),
