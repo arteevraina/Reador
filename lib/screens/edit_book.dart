@@ -23,7 +23,7 @@ class EditBook extends StatelessWidget {
   final BookProvider bookProvider;
   final int index;
   final bool isFavorite;
-  final DateTime dateTime;
+  final String dateTime;
   const EditBook({
     Key? key,
     required this.bookProvider,
@@ -54,7 +54,7 @@ class EditBookView extends StatefulWidget {
       : super(key: key);
   final int index;
   final bool isFavorite;
-  final DateTime dateTime;
+  final String dateTime;
 
   @override
   State<EditBookView> createState() => _EditBookViewState();
@@ -159,7 +159,7 @@ class _EditBookViewState extends State<EditBookView> {
                         double.parse(_totalPagesController.text)) {
                       context.read<BookProvider>().updateBook(
                             Book(
-                              widget.dateTime.toString(),
+                              widget.dateTime,
                               _bookNameController.text,
                               double.parse(_pagesReadController.text),
                               double.parse(_totalPagesController.text),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:reador/models/book.dart';
 import 'package:reador/provider/book_provider.dart';
 import 'package:reador/provider/theme_provider.dart';
 import 'package:reador/screens/add_book.dart';
@@ -70,28 +71,51 @@ class BooksListView extends StatelessWidget {
                           .toInt();
                       return Card(
                         key: ValueKey(provider.items[index].id),
-                        child: ListTile(
-                          isThreeLine: true,
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              EditBook.route(
-                                bookProvider: context.read<BookProvider>(),
-                                index: index,
-                                isFavorite: provider.items[index].favorite,
-                                dateTime: provider.items[index].id,
-                              ),
-                            );
-                          },
-                          title: Text(provider.items[index].name),
-                          subtitle: PercentIndicator(percent: percent),
-                          trailing: IconButton(
-                            onPressed: () {
-                              context.read<BookProvider>().delete(index);
+                        child: Container(
+                          margin: const EdgeInsets.only(top: 12),
+                          child: ListTile(
+                            isThreeLine: true,
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                EditBook.route(
+                                  bookProvider: context.read<BookProvider>(),
+                                  index: index,
+                                  isFavorite: provider.items[index].favorite,
+                                  dateTime: provider.items[index].id,
+                                ),
+                              );
                             },
-                            icon: const Icon(
-                              Icons.delete,
-                              color: Colors.red,
+                            title: Text(provider.items[index].name),
+                            subtitle: PercentIndicator(percent: percent),
+                            leading: IconButton(
+                              icon: (provider.items[index].favorite)
+                                  ? const Icon(
+                                      Icons.favorite,
+                                      color: Colors.red,
+                                    )
+                                  : const Icon(Icons.favorite),
+                              onPressed: () {
+                                context.read<BookProvider>().updateBook(
+                                      Book(
+                                        provider.items[index].id,
+                                        provider.items[index].name,
+                                        provider.items[index].pagesRead,
+                                        provider.items[index].totalPages,
+                                        !provider.items[index].favorite,
+                                      ),
+                                      index,
+                                    );
+                              },
+                            ),
+                            trailing: IconButton(
+                              onPressed: () {
+                                context.read<BookProvider>().delete(index);
+                              },
+                              icon: const Icon(
+                                Icons.delete,
+                                color: Colors.red,
+                              ),
                             ),
                           ),
                         ),
