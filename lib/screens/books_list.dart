@@ -5,6 +5,7 @@ import 'package:reador/provider/book_provider.dart';
 import 'package:reador/provider/theme_provider.dart';
 import 'package:reador/screens/add_book.dart';
 import 'package:reador/screens/edit_book.dart';
+import 'package:reador/screens/favorite_book_list.dart';
 
 class BooksList extends StatelessWidget {
   const BooksList({Key? key}) : super(key: key);
@@ -42,6 +43,14 @@ class BooksListView extends StatelessWidget {
               );
             },
           ),
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    FavoriteBookListPage.route(
+                        bookProvider: context.read<BookProvider>()));
+              },
+              icon: const Icon(Icons.favorite))
         ],
       ),
       floatingActionButton: FloatingActionButton(

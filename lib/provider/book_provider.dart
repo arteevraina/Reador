@@ -10,8 +10,15 @@ class BookProvider extends ChangeNotifier {
   // List of books in the cart. This is kept private.
   final List<Book> _books = [];
 
+  // List of books which are favorite. This is also kept private.
+  final List<Book> _favoriteBooks = [];
+
   /// An unmodifiable view of the books in the display.
   UnmodifiableListView<Book> get items => UnmodifiableListView(_books);
+
+  /// An unmodifiable view of the favorite books in the display.
+  UnmodifiableListView<Book> get favoriteBooks =>
+      UnmodifiableListView(_favoriteBooks);
 
   /// Adds book [Book] into the list of books.
   void add(Book book) async {
@@ -50,5 +57,15 @@ class BookProvider extends ChangeNotifier {
 
     // Get all the Books.
     getAllBooks();
+  }
+
+  /// This function will filter out the favorite books.
+  void filterFavoriteBooks() {
+    _favoriteBooks.clear();
+    for (var book in _books) {
+      if (book.favorite) {
+        _favoriteBooks.add(book);
+      }
+    }
   }
 }
