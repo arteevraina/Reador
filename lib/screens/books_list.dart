@@ -78,6 +78,8 @@ class BooksListView extends StatelessWidget {
                               EditBook.route(
                                 bookProvider: context.read<BookProvider>(),
                                 index: index,
+                                isFavorite: provider.items[index].favorite,
+                                dateTime: provider.items[index].id,
                               ),
                             );
                           },

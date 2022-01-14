@@ -7,32 +7,54 @@ class EditBook extends StatelessWidget {
   // Create a static method for route of Navigation.
   /// Provide the already created instance of [BookProvider]
   /// to [EditBook].
-  static route({required bookProvider, required index}) => MaterialPageRoute(
+  static route(
+          {required bookProvider,
+          required index,
+          required isFavorite,
+          required dateTime}) =>
+      MaterialPageRoute(
         builder: (context) => EditBook(
           bookProvider: bookProvider,
           index: index,
+          isFavorite: isFavorite,
+          dateTime: dateTime,
         ),
       );
   final BookProvider bookProvider;
   final int index;
+  final bool isFavorite;
+  final DateTime dateTime;
   const EditBook({
     Key? key,
     required this.bookProvider,
     required this.index,
+    required this.isFavorite,
+    required this.dateTime,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<BookProvider>.value(
       value: bookProvider,
-      child: EditBookView(index: index),
+      child: EditBookView(
+        index: index,
+        isFavorite: isFavorite,
+        dateTime: dateTime,
+      ),
     );
   }
 }
 
 class EditBookView extends StatefulWidget {
-  const EditBookView({Key? key, required this.index}) : super(key: key);
+  const EditBookView(
+      {Key? key,
+      required this.index,
+      required this.isFavorite,
+      required this.dateTime})
+      : super(key: key);
   final int index;
+  final bool isFavorite;
+  final DateTime dateTime;
 
   @override
   State<EditBookView> createState() => _EditBookViewState();
@@ -137,10 +159,11 @@ class _EditBookViewState extends State<EditBookView> {
                         double.parse(_totalPagesController.text)) {
                       context.read<BookProvider>().updateBook(
                             Book(
-                              DateTime.now().toString(),
+                              widget.dateTime.toString(),
                               _bookNameController.text,
                               double.parse(_pagesReadController.text),
                               double.parse(_totalPagesController.text),
+                              widget.isFavorite,
                             ),
                             widget.index,
                           );

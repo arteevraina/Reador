@@ -21,13 +21,14 @@ class BookAdapter extends TypeAdapter<Book> {
       fields[1] as String,
       fields[2] as double,
       fields[3] as double,
+      fields[4] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, Book obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -35,7 +36,9 @@ class BookAdapter extends TypeAdapter<Book> {
       ..writeByte(2)
       ..write(obj.pagesRead)
       ..writeByte(3)
-      ..write(obj.totalPages);
+      ..write(obj.totalPages)
+      ..writeByte(4)
+      ..write(obj.favorite);
   }
 
   @override

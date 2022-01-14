@@ -113,6 +113,8 @@ class _AddBookViewState extends State<AddBookView> {
                             _bookNameController.text,
                             double.parse(_pagesReadController.text),
                             double.parse(_totalPagesController.text),
+                            // Initially the book is not favorite.
+                            false,
                           ));
 
                       // If everything works, then show a snackbar that

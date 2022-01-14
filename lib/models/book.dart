@@ -17,6 +17,15 @@ class Book extends HiveObject {
   // Pages in the book.
   @HiveField(3)
   final double totalPages;
+  // Whether this book is favourite or not.
+  @HiveField(4)
+  final bool favorite;
 
-  Book(this.id, this.name, this.pagesRead, this.totalPages);
+  Book(
+    this.id,
+    this.name,
+    this.pagesRead,
+    this.totalPages,
+    this.favorite,
+  );
 }
