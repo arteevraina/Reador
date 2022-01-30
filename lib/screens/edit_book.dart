@@ -70,17 +70,17 @@ class _EditBookViewState extends State<EditBookView> {
   void initState() {
     super.initState();
     _bookNameController.text =
-        context.read<BookProvider>().items[widget.index].name;
+        context.read<BookProvider>().books[widget.index].name;
     _pagesReadController.text = context
         .read<BookProvider>()
-        .items[widget.index]
+        .books[widget.index]
         .pagesRead
         .toInt()
         .toString();
 
     _totalPagesController.text = context
         .read<BookProvider>()
-        .items[widget.index]
+        .books[widget.index]
         .totalPages
         .toInt()
         .toString();

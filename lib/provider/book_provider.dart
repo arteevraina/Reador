@@ -17,7 +17,7 @@ class BookProvider extends ChangeNotifier {
   final List<Book> _favoriteBooks = [];
 
   /// An unmodifiable view of the books in the display.
-  UnmodifiableListView<Book> get items => UnmodifiableListView(_books);
+  UnmodifiableListView<Book> get books => UnmodifiableListView(_books);
 
   /// An unmodifiable view of the favorite books in the display.
   UnmodifiableListView<Book> get favoriteBooks =>

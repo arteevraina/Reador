@@ -68,19 +68,19 @@ class BooksListView extends StatelessWidget {
             Expanded(
               child: Consumer<BookProvider>(
                 builder: (context, provider, child) {
-                  if (provider.items.isEmpty) {
+                  if (provider.books.isEmpty) {
                     return const Center(
                       child: Text("Please add books in your reading list"),
                     );
                   }
                   return ListView.builder(
                     itemBuilder: (context, index) {
-                      int percent = ((provider.items[index].pagesRead /
-                                  provider.items[index].totalPages) *
+                      int percent = ((provider.books[index].pagesRead /
+                                  provider.books[index].totalPages) *
                               100)
                           .toInt();
                       return Card(
-                        key: ValueKey(provider.items[index].id),
+                        key: ValueKey(provider.books[index].id),
                         child: Container(
                           margin: const EdgeInsets.only(top: 12),
                           child: ListTile(
@@ -91,15 +91,15 @@ class BooksListView extends StatelessWidget {
                                 EditBook.route(
                                   bookProvider: context.read<BookProvider>(),
                                   index: index,
-                                  isFavorite: provider.items[index].favorite,
-                                  dateTime: provider.items[index].id,
+                                  isFavorite: provider.books[index].favorite,
+                                  dateTime: provider.books[index].id,
                                 ),
                               );
                             },
-                            title: Text(provider.items[index].name),
+                            title: Text(provider.books[index].name),
                             subtitle: PercentIndicator(percent: percent),
                             leading: IconButton(
-                              icon: (provider.items[index].favorite)
+                              icon: (provider.books[index].favorite)
                                   ? const Icon(
                                       Icons.favorite,
                                       color: Colors.red,
@@ -108,11 +108,11 @@ class BooksListView extends StatelessWidget {
                               onPressed: () {
                                 context.read<BookProvider>().updateBook(
                                       Book(
-                                        provider.items[index].id,
-                                        provider.items[index].name,
-                                        provider.items[index].pagesRead,
-                                        provider.items[index].totalPages,
-                                        !provider.items[index].favorite,
+                                        provider.books[index].id,
+                                        provider.books[index].name,
+                                        provider.books[index].pagesRead,
+                                        provider.books[index].totalPages,
+                                        !provider.books[index].favorite,
                                       ),
                                       index,
                                     );
@@ -131,7 +131,7 @@ class BooksListView extends StatelessWidget {
                         ),
                       );
                     },
-                    itemCount: provider.items.length,
+                    itemCount: provider.books.length,
                   );
                 },
                 child: const Center(
