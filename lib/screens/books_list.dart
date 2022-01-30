@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:reador/models/book.dart';
 import 'package:reador/provider/book_provider.dart';
 import 'package:reador/provider/theme_provider.dart';
+import 'package:reador/repositories/book_repository.dart';
 import 'package:reador/screens/add_book.dart';
 import 'package:reador/screens/edit_book.dart';
 import 'package:reador/screens/favorite_book_list.dart';
@@ -14,7 +15,7 @@ class BooksList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       // Call it at the start when instance of BookProvider is created.
-      create: (context) => BookProvider()..getAllBooks(),
+      create: (context) => BookProvider(BookRepository())..getAllBooks(),
       child: const BooksListView(),
     );
   }

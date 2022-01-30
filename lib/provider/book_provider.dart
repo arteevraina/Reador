@@ -5,7 +5,10 @@ import 'package:reador/models/book.dart';
 import 'package:reador/repositories/book_repository.dart';
 
 class BookProvider extends ChangeNotifier {
-  final _bookRepository = BookRepository();
+  final BookRepository _bookRepository;
+
+  // Pass BookRepository in the constructor of BookProvider.
+  BookProvider(this._bookRepository);
 
   // List of books in the cart. This is kept private.
   final List<Book> _books = [];
