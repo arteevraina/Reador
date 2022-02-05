@@ -46,7 +46,8 @@ void main() {
 
     /// Mock function for repository level [updateBook] function.
     void arrangeUpdateBook(Book book, int index) {
-      when(() => mockBookRepository.updateBook(book, index)).thenAnswer((_) {
+      when(() => mockBookRepository.updateBook(book, index))
+          .thenAnswer((_) async {
         booksFromRepository.replaceRange(index, index, [book]);
       });
     }
