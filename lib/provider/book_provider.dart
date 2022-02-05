@@ -24,25 +24,25 @@ class BookProvider extends ChangeNotifier {
       UnmodifiableListView(_favoriteBooks);
 
   /// Adds book [Book] into the list of books.
-  void add(Book book) async {
+  Future<void> add(Book book) async {
     // Add book in the database.
-    _bookRepository.addBook(book);
+    await _bookRepository.addBook(book);
 
     // Get all the books.
-    getAllBooks();
+    await getAllBooks();
   }
 
   /// This function will help in deleting the book from the list view.
-  void delete(int index) {
+  Future<void> delete(int index) async {
     // Remove the book at index [index] from the database.
-    _bookRepository.deleteBook(index);
+    await _bookRepository.deleteBook(index);
 
     // Get all the books.
-    getAllBooks();
+    await getAllBooks();
   }
 
   /// This function will get all the books.
-  void getAllBooks() async {
+  Future<void> getAllBooks() async {
     // Get all the books from the database.
     List<Book> books = await _bookRepository.getAllBooks();
     // Clear existing _books array.
@@ -54,12 +54,12 @@ class BookProvider extends ChangeNotifier {
   }
 
   /// This function will update a book at particular index.
-  void updateBook(Book book, int index) {
+  Future<void> updateBook(Book book, int index) async {
     // Update the book in the database.
-    _bookRepository.updateBook(book, index);
+    await _bookRepository.updateBook(book, index);
 
     // Get all the Books.
-    getAllBooks();
+    await getAllBooks();
   }
 
   /// This function will filter out the favorite books.

@@ -150,14 +150,14 @@ class _EditBookViewState extends State<EditBookView> {
               ),
               const SizedBox(height: 12.0),
               ElevatedButton.icon(
-                onPressed: () {
+                onPressed: () async {
                   // If the validation works fine then proceed.
                   if (_formKey.currentState!.validate()) {
                     // Check if the pages read are always less than equal
                     // to total pages in the book.
                     if (double.parse(_pagesReadController.text) <=
                         double.parse(_totalPagesController.text)) {
-                      context.read<BookProvider>().updateBook(
+                      await context.read<BookProvider>().updateBook(
                             Book(
                               widget.dateTime,
                               _bookNameController.text,

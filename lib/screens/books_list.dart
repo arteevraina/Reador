@@ -105,8 +105,8 @@ class BooksListView extends StatelessWidget {
                                       color: Colors.red,
                                     )
                                   : const Icon(Icons.favorite),
-                              onPressed: () {
-                                context.read<BookProvider>().updateBook(
+                              onPressed: () async {
+                                await context.read<BookProvider>().updateBook(
                                       Book(
                                         provider.books[index].id,
                                         provider.books[index].name,
@@ -119,8 +119,10 @@ class BooksListView extends StatelessWidget {
                               },
                             ),
                             trailing: IconButton(
-                              onPressed: () {
-                                context.read<BookProvider>().delete(index);
+                              onPressed: () async {
+                                await context
+                                    .read<BookProvider>()
+                                    .delete(index);
                               },
                               icon: const Icon(
                                 Icons.delete,
