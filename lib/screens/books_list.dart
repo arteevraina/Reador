@@ -108,11 +108,14 @@ class BooksListView extends StatelessWidget {
                               onPressed: () async {
                                 await context.read<BookProvider>().updateBook(
                                       Book(
-                                        provider.books[index].id,
-                                        provider.books[index].name,
-                                        provider.books[index].pagesRead,
-                                        provider.books[index].totalPages,
-                                        !provider.books[index].favorite,
+                                        id: provider.books[index].id,
+                                        name: provider.books[index].name,
+                                        pagesRead:
+                                            provider.books[index].pagesRead,
+                                        totalPages:
+                                            provider.books[index].totalPages,
+                                        favorite:
+                                            !provider.books[index].favorite,
                                       ),
                                       index,
                                     );

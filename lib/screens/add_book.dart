@@ -109,12 +109,13 @@ class _AddBookViewState extends State<AddBookView> {
                     if (double.parse(_pagesReadController.text) <=
                         double.parse(_totalPagesController.text)) {
                       await context.read<BookProvider>().add(Book(
-                            DateTime.now().toString(),
-                            _bookNameController.text,
-                            double.parse(_pagesReadController.text),
-                            double.parse(_totalPagesController.text),
+                            id: DateTime.now().toString(),
+                            name: _bookNameController.text,
+                            pagesRead: double.parse(_pagesReadController.text),
+                            totalPages:
+                                double.parse(_totalPagesController.text),
                             // Initially the book is not favorite.
-                            false,
+                            favorite: false,
                           ));
 
                       // If everything works, then show a snackbar that

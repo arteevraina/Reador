@@ -159,11 +159,13 @@ class _EditBookViewState extends State<EditBookView> {
                         double.parse(_totalPagesController.text)) {
                       await context.read<BookProvider>().updateBook(
                             Book(
-                              widget.dateTime,
-                              _bookNameController.text,
-                              double.parse(_pagesReadController.text),
-                              double.parse(_totalPagesController.text),
-                              widget.isFavorite,
+                              id: widget.dateTime,
+                              name: _bookNameController.text,
+                              pagesRead:
+                                  double.parse(_pagesReadController.text),
+                              totalPages:
+                                  double.parse(_totalPagesController.text),
+                              favorite: widget.isFavorite,
                             ),
                             widget.index,
                           );
