@@ -166,7 +166,41 @@ void main() {
       },
     );
 
-    // TODO: add a test for update book when freezed has been integrated.
+    test(
+      "updateBook function updates book",
+      () async {
+        // Arrange the mocks.
+        arrangeGetAllBooks();
+        arrangeUpdateBook(
+            const Book(
+                id: "1",
+                name: "Book1",
+                pagesRead: 10,
+                totalPages: 300,
+                favorite: false),
+            0);
+
+        // Act.
+        await sut.updateBook(
+            const Book(
+                id: "1",
+                name: "Book1",
+                pagesRead: 10,
+                totalPages: 300,
+                favorite: false),
+            0);
+        // Assert.
+        expect(
+          sut.books[0],
+          const Book(
+              id: "1",
+              name: "Book1",
+              pagesRead: 10,
+              totalPages: 300,
+              favorite: false),
+        );
+      },
+    );
 
     test(
       "Adds books in favorite books when filterFavoriteBooks is called",
