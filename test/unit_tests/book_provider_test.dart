@@ -18,10 +18,30 @@ void main() {
 
   group("BookProvider unit tests", () {
     final booksFromRepository = [
-      Book("1", "Book 1", 100, 300, false),
-      Book("2", "Book 2", 100, 300, false),
-      Book("3", "Book 3", 100, 300, false),
-      Book("4", "Book 4", 100, 300, true),
+      const Book(
+          id: "1",
+          name: "Book 1",
+          pagesRead: 100,
+          totalPages: 300,
+          favorite: false),
+      const Book(
+          id: "2",
+          name: "Book 2",
+          pagesRead: 100,
+          totalPages: 300,
+          favorite: false),
+      const Book(
+          id: "3",
+          name: "Book 3",
+          pagesRead: 100,
+          totalPages: 300,
+          favorite: false),
+      const Book(
+          id: "4",
+          name: "Book 4",
+          pagesRead: 100,
+          totalPages: 300,
+          favorite: true),
     ];
 
     /// Mock function for repository level [getAllBooks] function.
@@ -94,7 +114,12 @@ void main() {
     test(
       "Adds a book when addbook is called",
       () async {
-        final book = Book("5", "Book 5", 100, 300, false);
+        const book = Book(
+            id: "5",
+            name: "Book 5",
+            totalPages: 100,
+            pagesRead: 300,
+            favorite: false);
         // Arrange the mock.
         arrangeGetAllBooks();
         arrangeAddBook(book);
