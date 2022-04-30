@@ -15,7 +15,7 @@ class BooksList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       // Call it at the start when instance of BookProvider is created.
-      create: (context) => BookProvider(BookRepository())..getAllBooks(),
+      create: (context) => BookProvider(BookRepositoryAPI())..getAllBooks(),
       child: const BooksListView(),
     );
   }
