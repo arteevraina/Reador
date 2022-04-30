@@ -59,3 +59,7 @@ $ flutter pub get
 ```
 $ flutter run
 ```
+
+## Devpost Link
+
+- https://devpost.com/software/reador
