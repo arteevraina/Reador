@@ -60,6 +60,18 @@ $ flutter pub get
 $ flutter run
 ```
 
+## Screenshots
+
+<p align="center">
+  <img src="readme_pictures/l1.png" width="256" hspace="4">
+  <img src="readme_pictures/l2.png" width="256" hspace="4">
+  <img src="readme_pictures/l3.png" width="256" hspace="4">
+  <img src="readme_pictures/l4.png" width="256" hspace="4">
+  <img src="readme_pictures/d4.png" width="256" hspace="4">
+  <img src="readme_pictures/d2.png" width="256" hspace="4">
+  <img src="readme_pictures/d3.png" width="256" hspace="4">
+  <img src="readme_pictures/d1.png" width="256" hspace="4">
+
 ## Devpost Link
 
 - https://devpost.com/software/reador
